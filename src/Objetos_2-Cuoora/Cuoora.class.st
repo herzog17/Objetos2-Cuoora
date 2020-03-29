@@ -26,11 +26,12 @@ Cuoora >> obtenerPreguntasConTopico: unTopico [
 
 { #category : #accessing }
 Cuoora >> preguntasRelevantesParaElUsuario: unUsuario [
-"no se si esto funciona o si se puede mejorar"
+"Creo que ahí tendría que funcionar funciona"
 	|relevantes|
-	relevantes := usuarios flatCollect: [ :each | each preguntasDeUsuariosQueSigue ].
-	^ relevantes flatCollectAsSet: (unUsuario topicosDeInteres do: [ :each | self obtenerPreguntasConTopico: each ]).
-	
+	relevantes := unUsuario preguntasDeUsuariosQueSigue.
+	unUsuario topicosDeInteres do: [ :each | relevantes addAll: (self obtenerPreguntasConTopico: each) ].
+	^relevantes asSet.
+
 ]
 
 { #category : #accessing }

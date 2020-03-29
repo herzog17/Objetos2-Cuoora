@@ -24,6 +24,26 @@ Usuario >> agregarTopicoDeInteres: unTopico [
 	topicosDeInteres add: unTopico.
 ]
 
+{ #category : #'as yet unclassified' }
+Usuario >> borrarPregunta: unaPregunta [ 
+	"todavia me quedan algunas dudas con el tema de borrado, habría que chequear bien despues el mecanismo"
+	unaPregunta borrarRespuestas.
+	preguntas remove: unaPregunta.
+]
+
+{ #category : #deleting }
+Usuario >> borrarRespuesta: unaRespuesta [
+	respuestas remove: unaRespuesta.
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> calcularPuntaje [
+	"Se tienen encuenta todas las respuestas del usuario, hasta las que respondio a una pregunta que hizo el mismo"
+	| puntajePreguntas |
+	puntajePreguntas := preguntas sumNumbers: [ :each | each puntaje ].
+	^ (puntajePreguntas + (respuestas sumNumbers: [ :each | each puntaje ])).
+]
+
 { #category : #accessing }
 Usuario >> crearPreguntaConTitulo: unTitulo descripcion: unaDescripcion topicosAsociados: unaColeccionDeTopicos [ 
 	preguntas add: (Pregunta conTitulo: unTitulo descripcion: unaDescripcion topicosAsociados: unaColeccionDeTopicos autor: self).
@@ -32,7 +52,8 @@ Usuario >> crearPreguntaConTitulo: unTitulo descripcion: unaDescripcion topicosA
 { #category : #accessing }
 Usuario >> crearRespuestaConTexto: unTexto paraPregunta: unaPregunta [
 	|nuevaRta|
-	respuestas add: (nuevaRta := (Respuesta conTexto: unTexto autor: self)).
+	nuevaRta := Respuesta conTexto: unTexto autor: self.
+	respuestas add: nuevaRta.
 	unaPregunta agregarRespuesta: nuevaRta.
 ]
 
@@ -49,12 +70,22 @@ Usuario >> initConNombre: unNombre password: unPassword [
 
 { #category : #accessing }
 Usuario >> preguntas [ 
-	^ preguntas.
+	^ preguntas copy.
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> preguntasConTopico: unTopico [ 
+	^ preguntas select: [ :each | each incluyeTopico: unTopico  ].
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> preguntasDeUsuariosQueSigue [
+	^ usuariosQueSigue flatCollect: [ :each | each preguntas ].
 ]
 
 { #category : #accessing }
 Usuario >> respuestas [
-	^ respuestas.
+	^ respuestas copy.
 ]
 
 { #category : #accessing }
@@ -65,5 +96,5 @@ Usuario >> seguirA: otroUsuario [
 
 { #category : #accessing }
 Usuario >> topicosDeInteres [
-	^ topicosDeInteres.
+	^ topicosDeInteres copy.
 ]
