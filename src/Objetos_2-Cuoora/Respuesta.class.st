@@ -7,8 +7,13 @@ Class {
 	#category : #'Objetos_2-Cuoora'
 }
 
+{ #category : #constructor }
+Respuesta class >> conTexto: unTexto autor: unUsuario [
+	^ self new initConTexto: unTexto autor: unUsuario. 
+]
+
 { #category : #initialization }
 Respuesta >> initConTexto: unTexto autor: unUsuario [
 	texto := unTexto.
-	self initConAutor: unUsuario
+	self initConAutor: unUsuario.
 ]
