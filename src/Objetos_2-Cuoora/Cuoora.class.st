@@ -24,6 +24,11 @@ Cuoora >> obtenerPreguntasConTopico: unTopico [
 	^ usuarios flatCollect: [ :each | each preguntasConTopico: unTopico ].
 ]
 
+{ #category : #'as yet unclassified' }
+Cuoora >> obtenerPreguntasDe: unUsuario [
+	^unUsuario preguntas.
+]
+
 { #category : #accessing }
 Cuoora >> preguntasRelevantesParaElUsuario: unUsuario [
 "Creo que ahí tendría que funcionar funciona"
