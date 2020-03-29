@@ -15,6 +15,16 @@ Pregunta class >> conTitulo: unTitulo descripcion: unaDescripcion topicosAsociad
 	^self new initConTitulo: unTitulo descripcion: unaDescripcion  topicosAsociados: unaColeccionDeTopicos  autor: unUsuario.
 ]
 
+{ #category : #deleting }
+Pregunta >> borrarRespuestas [
+	respuestas do: [ :each | each eliminate ].
+]
+
+{ #category : #accessing }
+Pregunta >> incluyeTopico: unTopico [
+	^ topicosAsociados includes: unTopico.
+]
+
 { #category : #initialization }
 Pregunta >> initConTitulo: unTitulo descripcion: unaDescripcion topicosAsociados: unaColeccionDeTopicos autor: unUsuario [
 	titulo:= unTitulo.
