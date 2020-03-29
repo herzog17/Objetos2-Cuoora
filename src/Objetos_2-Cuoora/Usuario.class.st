@@ -47,7 +47,7 @@ Usuario >> calcularPuntaje [
 
 { #category : #adding }
 Usuario >> crearPreguntaConTitulo: unTitulo descripcion: unaDescripcion topicosAsociados: unaColeccionDeTopicos [ 
-	preguntas add: (Pregunta conTitulo: unTitulo descripcion: unaDescripcion topicosAsociados: unaColeccionDeTopicos autor: self).
+	^ (preguntas add: (Pregunta conTitulo: unTitulo descripcion: unaDescripcion topicosAsociados: unaColeccionDeTopicos autor: self)).
 ]
 
 { #category : #adding }
@@ -56,6 +56,7 @@ Usuario >> crearRespuestaConTexto: unTexto paraPregunta: unaPregunta [
 	nuevaRta := Respuesta conTexto: unTexto autor: self pregunta: unaPregunta.
 	respuestas add: nuevaRta.
 	unaPregunta agregarRespuesta: nuevaRta.
+	^nuevaRta.
 ]
 
 { #category : #initialization }
