@@ -8,7 +8,7 @@ Class {
 	#category : #'Objetos_2-Cuoora'
 }
 
-{ #category : #accessing }
+{ #category : #adding }
 Cuoora >> agregarTopicoConNombre: unNombre descripcion: unaDescripcion [ 
 	topicos add: (Topico conNombre: unNombre descripcion: unaDescripcion).
 ]
@@ -24,7 +24,7 @@ Cuoora >> obtenerPreguntasConTopico: unTopico [
 	^ usuarios flatCollect: [ :each | each preguntasConTopico: unTopico ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Cuoora >> obtenerPreguntasDe: unUsuario [
 	^unUsuario preguntas.
 ]
@@ -39,7 +39,7 @@ Cuoora >> preguntasRelevantesParaElUsuario: unUsuario [
 
 ]
 
-{ #category : #accessing }
+{ #category : #adding }
 Cuoora >> registrarUsuarioConNombre: unNombre password: unPassword [
 	usuarios add: (Usuario conNombre: unNombre password: unPassword).
 ]

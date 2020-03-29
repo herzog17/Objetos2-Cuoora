@@ -18,7 +18,7 @@ Respuesta >> eliminate [
 	autor borrarRespuesta: self.
 ]
 
-{ #category : #accessing }
+{ #category : #boolean }
 Respuesta >> esDistintoAutorQueLaPregunta [
 	^ self autor ~= pregunta autor.
 ]
@@ -30,7 +30,7 @@ Respuesta >> initConTexto: unTexto autor: unUsuario pregunta: unaPregunta [
 	self initConAutor: unUsuario.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #abstract }
 Respuesta >> puntaje [
 	^ 50 + self diferenciaLikes.
 ]

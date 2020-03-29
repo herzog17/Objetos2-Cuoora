@@ -20,7 +20,7 @@ Publicacion >> autor [
 	^autor
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #calculating }
 Publicacion >> diferenciaLikes [
 	^ (likes size - dislikes size).
 ]
@@ -38,18 +38,18 @@ Publicacion >> initConAutor: unUsuario [
 	fechaYHora := DateAndTime now.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #abstract }
 Publicacion >> puntaje [
 	^self subclassResponsibility.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 Publicacion >> registrarDislikeDe: unUsuario [
 	self agregarReaccionDe: unUsuario aLaColeccion: dislikes.
 	self eliminarReaccionDe: unUsuario deLaColeccion: likes.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 Publicacion >> registrarLikeDe: unUsuario [
 	self agregarReaccionDe: unUsuario aLaColeccion: likes.
 	self eliminarReaccionDe: unUsuario deLaColeccion: dislikes.

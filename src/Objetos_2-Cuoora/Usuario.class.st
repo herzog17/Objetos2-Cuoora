@@ -18,13 +18,13 @@ Usuario class >> conNombre: unNombre password: unPassword [
 	^self new initConNombre:unNombre password: unPassword.
 ]
 
-{ #category : #accessing }
+{ #category : #adding }
 Usuario >> agregarTopicoDeInteres: unTopico [
 "capas habria que chequear que no lo agrege repetido con addIfNotPresent"
 	topicosDeInteres add: unTopico.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #deleting }
 Usuario >> borrarPregunta: unaPregunta [ 
 	"todavia me quedan algunas dudas con el tema de borrado, habría que chequear bien despues el mecanismo"
 	unaPregunta borrarRespuestas.
@@ -36,7 +36,7 @@ Usuario >> borrarRespuesta: unaRespuesta [
 	respuestas remove: unaRespuesta.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #calculating }
 Usuario >> calcularPuntaje [
 	"Se tienen encuenta todas las preguntas del usuario y todas las respuestas validas, osea las que responden a una pregunta que no hizo el mismo"
 	| puntajePreguntas respuestasValidas |
@@ -45,12 +45,12 @@ Usuario >> calcularPuntaje [
 	^ (puntajePreguntas + (respuestasValidas sumNumbers: [ :each | each puntaje ])).
 ]
 
-{ #category : #accessing }
+{ #category : #adding }
 Usuario >> crearPreguntaConTitulo: unTitulo descripcion: unaDescripcion topicosAsociados: unaColeccionDeTopicos [ 
 	preguntas add: (Pregunta conTitulo: unTitulo descripcion: unaDescripcion topicosAsociados: unaColeccionDeTopicos autor: self).
 ]
 
-{ #category : #accessing }
+{ #category : #adding }
 Usuario >> crearRespuestaConTexto: unTexto paraPregunta: unaPregunta [
 	|nuevaRta|
 	nuevaRta := Respuesta conTexto: unTexto autor: self pregunta: unaPregunta.
@@ -74,12 +74,12 @@ Usuario >> preguntas [
 	^ preguntas copy.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> preguntasConTopico: unTopico [ 
 	^ preguntas select: [ :each | each incluyeTopico: unTopico  ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Usuario >> preguntasDeUsuariosQueSigue [
 	^ usuariosQueSigue flatCollect: [ :each | each preguntas ].
 ]
@@ -89,7 +89,7 @@ Usuario >> respuestas [
 	^ respuestas copy.
 ]
 
-{ #category : #accessing }
+{ #category : #adding }
 Usuario >> seguirA: otroUsuario [
 "si ya seguia a ese usuario, no lo vuelve a agregar"
 	usuariosQueSigue addIfNotPresent: otroUsuario.

@@ -25,7 +25,7 @@ Pregunta >> borrarRespuestas [
 	respuestas do: [ :each | each eliminate ].
 ]
 
-{ #category : #accessing }
+{ #category : #boolean }
 Pregunta >> incluyeTopico: unTopico [
 	^ topicosAsociados includes: unTopico.
 ]
@@ -39,7 +39,7 @@ Pregunta >> initConTitulo: unTitulo descripcion: unaDescripcion topicosAsociados
 	self initConAutor: unUsuario.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #abstract }
 Pregunta >> puntaje [
 	^ 20 + self diferenciaLikes.
 ]
