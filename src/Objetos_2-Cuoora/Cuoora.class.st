@@ -10,7 +10,7 @@ Class {
 
 { #category : #adding }
 Cuoora >> agregarTopicoConNombre: unNombre descripcion: unaDescripcion [ 
-	topicos add: (Topico conNombre: unNombre descripcion: unaDescripcion).
+	^ (topicos add: (Topico conNombre: unNombre descripcion: unaDescripcion)).
 ]
 
 { #category : #initialization }
@@ -29,6 +29,11 @@ Cuoora >> obtenerPreguntasDe: unUsuario [
 	^unUsuario preguntas.
 ]
 
+{ #category : #accesing }
+Cuoora >> obtenerRespuestasDe: unUsuario [
+	^ unUsuario respuestas.
+]
+
 { #category : #accessing }
 Cuoora >> preguntasRelevantesParaElUsuario: unUsuario [
 "Creo que ahí tendría que funcionar funciona"
@@ -41,5 +46,5 @@ Cuoora >> preguntasRelevantesParaElUsuario: unUsuario [
 
 { #category : #adding }
 Cuoora >> registrarUsuarioConNombre: unNombre password: unPassword [
-	usuarios add: (Usuario conNombre: unNombre password: unPassword).
+	^ (usuarios add: (Usuario conNombre: unNombre password: unPassword)).
 ]
