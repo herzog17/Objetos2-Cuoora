@@ -10,6 +10,11 @@ Class {
 	#category : #'Objetos_2-Cuoora'
 }
 
+{ #category : #private }
+Publicacion >> agregarReaccionDe: unUsuario aLaColeccion: unaColeccion [
+	unaColeccion detect: [ :reaccion | reaccion esDelAutor: unUsuario ] ifFound: [ ^nil ] ifNone: [ unaColeccion add: (Reaccion conAutor: unUsuario) ].
+]
+
 { #category : #accessing }
 Publicacion >> autor [
 	^autor
@@ -18,6 +23,13 @@ Publicacion >> autor [
 { #category : #'as yet unclassified' }
 Publicacion >> diferenciaLikes [
 	^ (likes size - dislikes size).
+]
+
+{ #category : #private }
+Publicacion >> eliminarReaccionDe: unUsuario deLaColeccion: unaColeccion [ 
+	| reaccion |
+	reaccion:= unaColeccion detect: [ :each | each esDelAutor: unUsuario ] ifNone: [nil].
+	reaccion ifNotNil: [ unaColeccion remove: reaccion ].
 ]
 
 { #category : #initialization }
@@ -32,11 +44,13 @@ Publicacion >> puntaje [
 ]
 
 { #category : #'as yet unclassified' }
-Publicacion >> registrarDislike [
-	"falta implementar..."
+Publicacion >> registrarDislikeDe: unUsuario [
+	self agregarReaccionDe: unUsuario aLaColeccion: dislikes.
+	self eliminarReaccionDe: unUsuario deLaColeccion: likes.
 ]
 
 { #category : #'as yet unclassified' }
-Publicacion >> registrarLike [
-	"falta implementar..."
+Publicacion >> registrarLikeDe: unUsuario [
+	self agregarReaccionDe: unUsuario aLaColeccion: likes.
+	self eliminarReaccionDe: unUsuario deLaColeccion: dislikes.
 ]

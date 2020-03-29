@@ -13,6 +13,11 @@ Reaccion class >> conAutor: unUsuario [
 	^self new initConAutor: unUsuario
 ]
 
+{ #category : #boolean }
+Reaccion >> esDelAutor: unUsuario [
+	^ autor = unUsuario
+]
+
 { #category : #initialization }
 Reaccion >> initConAutor: unUsuario [
 	autor:=unUsuario.
