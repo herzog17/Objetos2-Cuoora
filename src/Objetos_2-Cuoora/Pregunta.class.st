@@ -43,3 +43,8 @@ Pregunta >> initConTitulo: unTitulo descripcion: unaDescripcion topicosAsociados
 Pregunta >> puntaje [
 	^ 20 + self diferenciaLikes.
 ]
+
+{ #category : #accessing }
+Pregunta >> respuestas [
+	^ respuestas asSortedCollection: [ :unaRta :otraRta | unaRta diferenciaLikes > otraRta diferenciaLikes ].
+]
