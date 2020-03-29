@@ -15,6 +15,11 @@ Pregunta class >> conTitulo: unTitulo descripcion: unaDescripcion topicosAsociad
 	^self new initConTitulo: unTitulo descripcion: unaDescripcion  topicosAsociados: unaColeccionDeTopicos  autor: unUsuario.
 ]
 
+{ #category : #adding }
+Pregunta >> agregarRespuesta: unaRespuesta [
+	respuestas add: unaRespuesta.
+]
+
 { #category : #deleting }
 Pregunta >> borrarRespuestas [
 	respuestas do: [ :each | each eliminate ].
@@ -32,4 +37,9 @@ Pregunta >> initConTitulo: unTitulo descripcion: unaDescripcion topicosAsociados
 	topicosAsociados := unaColeccionDeTopicos.
 	respuestas := OrderedCollection new.
 	self initConAutor: unUsuario.
+]
+
+{ #category : #'as yet unclassified' }
+Pregunta >> puntaje [
+	^ 20 + self diferenciaLikes.
 ]

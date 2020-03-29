@@ -38,10 +38,11 @@ Usuario >> borrarRespuesta: unaRespuesta [
 
 { #category : #'as yet unclassified' }
 Usuario >> calcularPuntaje [
-	"Se tienen encuenta todas las respuestas del usuario, hasta las que respondio a una pregunta que hizo el mismo"
-	| puntajePreguntas |
+	"Se tienen encuenta todas las preguntas del usuario y todas las respuestas validas, osea las que responden a una pregunta que no hizo el mismo"
+	| puntajePreguntas respuestasValidas |
 	puntajePreguntas := preguntas sumNumbers: [ :each | each puntaje ].
-	^ (puntajePreguntas + (respuestas sumNumbers: [ :each | each puntaje ])).
+	respuestasValidas := respuestas select: [ :each | each esDistintoAutorQueLaPregunta ].
+	^ (puntajePreguntas + (respuestasValidas sumNumbers: [ :each | each puntaje ])).
 ]
 
 { #category : #accessing }
@@ -52,7 +53,7 @@ Usuario >> crearPreguntaConTitulo: unTitulo descripcion: unaDescripcion topicosA
 { #category : #accessing }
 Usuario >> crearRespuestaConTexto: unTexto paraPregunta: unaPregunta [
 	|nuevaRta|
-	nuevaRta := Respuesta conTexto: unTexto autor: self.
+	nuevaRta := Respuesta conTexto: unTexto autor: self pregunta: unaPregunta.
 	respuestas add: nuevaRta.
 	unaPregunta agregarRespuesta: nuevaRta.
 ]
