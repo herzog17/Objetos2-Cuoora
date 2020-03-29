@@ -1,0 +1,20 @@
+Class {
+	#name : #Reaccion,
+	#superclass : #Object,
+	#instVars : [
+		'fechaYHora',
+		'autor'
+	],
+	#category : #'Objetos_2-Cuoora'
+}
+
+{ #category : #constructor }
+Reaccion class >> conAutor: unUsuario [
+	^self new initConAutor: unUsuario
+]
+
+{ #category : #initialization }
+Reaccion >> initConAutor: unUsuario [
+	autor:=unUsuario.
+	fechaYHora := DateAndTime now.
+]
